@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+**/.dotnet/
+**/.vs/
+**/artifacts/
+**/TestResults/
+*.user
+*.suo
+.DS_Store
+Thumbs.db

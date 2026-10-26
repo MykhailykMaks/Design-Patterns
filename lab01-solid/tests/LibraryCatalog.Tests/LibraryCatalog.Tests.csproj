@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/LibraryCatalog.Core/LibraryCatalog.Core.csproj" />
+    <ProjectReference Include="../../src/LibraryCatalog.Console/LibraryCatalog.Console.csproj" />
+  </ItemGroup>
+</Project>
