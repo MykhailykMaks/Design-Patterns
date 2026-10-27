@@ -1,60 +1,55 @@
-# Design Patterns — University Coursework
+# Патерни проєктування
 
-C# coursework for the university subject **Design Patterns / Паттерны проектирования**.
+Навчальні проєкти з дисципліни **«Патерни проєктування»**, написані мовою C#.
 
-The repository contains two independent projects:
+## Проєкти
 
-| Folder | Project | Status |
+| Папка | Проєкт | Стан |
 |---|---|---|
-| [lab01-solid](lab01-solid/README.md) | Console library catalog demonstrating SOLID | Implemented |
-| [game](game/README.md) | WPF game for the following design-pattern labs | Planned |
+| [lab01-solid](lab01-solid/README.md) | Консольний каталог бібліотеки для демонстрації SOLID | Реалізовано |
+| [game](game/README.md) | Гра на WPF для наступних лабораторних робіт | Заплановано |
 
-## Lab 1 — SOLID Library Catalog
+Кожен проєкт має власні налаштування збірки та інструкцію запуску. Документація всього репозиторію ведеться українською мовою. Консольний інтерфейс першої лабораторної — англійською.
 
-A console application for managing books, newspapers and almanacs. It supports manual and factory-generated additions, editing, removal, grouped display and searching by title, publisher, year or author.
+## Лабораторна робота №1 — SOLID
 
-- English console interface.
-- In-memory storage with fictional demonstration data.
-- Separate models, catalog operations, storage, search criteria and console interaction.
-- A Simple Factory for fully populated random publications.
-- Automated checks for domain rules, CRUD, search, generation and console scenarios.
+Каталог працює з книгами, газетами та альманахами. Підтримуються ручне додавання, створення випадкових видань фабрикою, редагування, видалення, групування та пошук за назвою, видавництвом, роком або автором.
 
-### Run
+Дані зберігаються в оперативній пам’яті. Під час запуску каталог заповнюється вигаданими прикладами з правдоподібними назвами та іменами.
 
-Install the .NET 8 SDK, then run from the repository root:
+### Запуск
+
+Потрібен **.NET 8 SDK**. Із кореня репозиторію:
 
 ```powershell
 cd lab01-solid
 .\run.cmd
 ```
 
-Cross-platform command from the same folder:
+Або з папки `lab01-solid`:
 
 ```shell
 dotnet run --project src/LibraryCatalog.Console -c Release
 ```
 
-### Check
+### Збірка та перевірка
 
-From `lab01-solid`:
+Виконайте з папки `lab01-solid`:
 
 ```shell
 dotnet build LibraryCatalog.sln -c Release
 dotnet run --project tests/LibraryCatalog.Tests -c Release
 ```
 
-The checks use a standalone executable and require no third-party NuGet packages.
+Перевірки запускаються як окрема консольна програма та не потребують сторонніх NuGet-пакетів.
 
-### Study materials
+### Документація
 
-- [Lab instructions](lab01-solid/README.md)
-- [Code walkthrough and SOLID examples](lab01-solid/docs/EXPLANATION.md)
-- [Defense preparation](lab01-solid/docs/DEFENSE.md)
+- [Можливості, правила роботи та приклади команд](lab01-solid/README.md).
+- [Будова програми та реалізація SOLID](lab01-solid/docs/EXPLANATION.md).
 
-The study materials are written in Russian. The console interface is English.
+## Гра — наступні лабораторні роботи
 
-## Game — Following Labs
+Папку `game/` зарезервовано для однієї гри, яка поступово розвиватиметься в наступних лабораторних роботах. Запланований інтерфейс — WPF. Концепцію, механіки та набір доречних породжувальних, структурних і поведінкових патернів буде визначено окремо.
 
-The second project will be developed in `game/`. It will demonstrate suitable creational, structural and behavioral patterns through one evolving WPF game. Its concept and mechanics will be selected after the first lab; no game implementation is included yet.
-
-Each project keeps its own build configuration and instructions so that it can evolve independently.
+Реалізації гри поки немає. Її README, пояснення та інша документація також писатимуться українською мовою.

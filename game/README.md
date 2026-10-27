@@ -1,7 +1,15 @@
-# Design Patterns Game
+# Гра для вивчення патернів проєктування
 
-Reserved for the WPF game developed during the following university labs.
+У цій папці розроблятиметься гра для наступних лабораторних робіт із дисципліни «Патерни проєктування».
 
-Status: planned. The game concept, rules and implementation have not been selected yet.
+**Стан:** заплановано. Концепцію, правила та механіки ще не обрано; реалізації й команд запуску поки немає.
 
-The project will grow in this folder and demonstrate appropriate creational, structural and behavioral patterns. See [Lab 1](../lab01-solid/README.md) for the completed SOLID console application.
+## Напрям розробки
+
+- Мова програмування — C#.
+- Інтерфейс — WPF.
+- Одна гра поступово розвиватиметься протягом наступних лабораторних робіт.
+- Породжувальні, структурні та поведінкові патерни добиратимуться під конкретні завдання гри.
+- README, пояснення архітектури та решта документації ведуться українською мовою.
+
+Готова перша лабораторна — [консольний каталог бібліотеки з SOLID](../lab01-solid/README.md).
