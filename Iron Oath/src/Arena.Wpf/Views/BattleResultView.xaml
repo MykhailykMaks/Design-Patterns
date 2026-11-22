@@ -1,0 +1,97 @@
+<UserControl x:Class="Arena.Wpf.Views.BattleResultView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             IsVisibleChanged="OnVisibilityChanged">
+ <UserControl.Resources>
+  <RadialGradientBrush x:Key="VictoryLight" Center=".5,.30" GradientOrigin=".5,.28" RadiusX=".60" RadiusY=".72">
+   <GradientStop Color="#5A4127" />
+   <GradientStop Color="#282522" Offset=".53" />
+   <GradientStop Color="#10171D" Offset="1" />
+  </RadialGradientBrush>
+  <RadialGradientBrush x:Key="DefeatLight" Center=".5,.32" GradientOrigin=".5,.34" RadiusX=".64" RadiusY=".70">
+   <GradientStop Color="#38252D" />
+   <GradientStop Color="#211D25" Offset=".52" />
+   <GradientStop Color="#10161C" Offset="1" />
+  </RadialGradientBrush>
+ </UserControl.Resources>
+
+ <Border CornerRadius="6" BorderThickness="1" ClipToBounds="True">
+  <Border.Style>
+   <Style TargetType="Border">
+    <Setter Property="Background" Value="{StaticResource DefeatLight}" />
+    <Setter Property="BorderBrush" Value="#67484E" />
+    <Style.Triggers>
+     <DataTrigger Binding="{Binding IsVictory}" Value="True">
+      <Setter Property="Background" Value="{StaticResource VictoryLight}" />
+      <Setter Property="BorderBrush" Value="#A68048" />
+     </DataTrigger>
+    </Style.Triggers>
+   </Style>
+  </Border.Style>
+  <Grid Margin="24">
+   <Border CornerRadius="3" BorderThickness="1" BorderBrush="#39515C60" IsHitTestVisible="False" />
+   <Canvas x:Name="Atmosphere" Width="1040" Height="650" HorizontalAlignment="Center" VerticalAlignment="Center"
+           IsHitTestVisible="False" />
+   <StackPanel x:Name="ResultContent" Width="600" VerticalAlignment="Center">
+    <StackPanel.RenderTransform><TranslateTransform x:Name="ResultSlide" /></StackPanel.RenderTransform>
+    <Grid Width="164" Height="154" HorizontalAlignment="Center" IsHitTestVisible="False">
+     <Canvas x:Name="VictorySeal" Width="164" Height="154">
+      <Canvas.Style><Style TargetType="Canvas">
+       <Setter Property="Visibility" Value="Collapsed" />
+       <Style.Triggers><DataTrigger Binding="{Binding IsVictory}" Value="True"><Setter Property="Visibility" Value="Visible" /></DataTrigger></Style.Triggers>
+      </Style></Canvas.Style>
+      <Ellipse Width="140" Height="140" Canvas.Left="12" Canvas.Top="7" Stroke="#C29F61" StrokeThickness="1" Opacity=".55" />
+      <Ellipse Width="112" Height="112" Canvas.Left="26" Canvas.Top="21" Fill="#372D25" Stroke="#E5BC77" StrokeThickness="1.5" />
+      <Ellipse x:Name="VictoryHalo" Width="138" Height="138" Canvas.Left="13" Canvas.Top="8"
+               Opacity="0" Stroke="#FFD895" StrokeThickness="3" RenderTransformOrigin=".5,.5">
+       <Ellipse.RenderTransform><ScaleTransform x:Name="HaloScale" /></Ellipse.RenderTransform>
+      </Ellipse>
+      <Path Data="M82,34 L89,45 86,85 H99 V91 H86 V110 L82,115 78,110 V91 H65 V85 H78 L75,45 Z"
+            Fill="#F2C783" Stroke="#FFF0C3" StrokeThickness="1" StrokeLineJoin="Round" />
+      <Path Data="M64,120 C43,114 35,96 37,77 M100,120 C121,114 129,96 127,77
+                  M42,96 L36,83 29,87 M49,108 L38,100 31,105 M60,118 L48,113 43,120
+                  M122,96 L128,83 135,87 M115,108 L126,100 133,105 M104,118 L116,113 121,120"
+            Stroke="#C29555" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
+      <Path Data="M82,7 L86,13 82,19 78,13 Z M82,135 L86,141 82,147 78,141 Z" Fill="#F0C982" />
+     </Canvas>
+     <Canvas Width="164" Height="154">
+      <Canvas.Style><Style TargetType="Canvas">
+       <Style.Triggers><DataTrigger Binding="{Binding IsVictory}" Value="True"><Setter Property="Visibility" Value="Collapsed" /></DataTrigger></Style.Triggers>
+      </Style></Canvas.Style>
+      <Ellipse Width="140" Height="140" Canvas.Left="12" Canvas.Top="7" Stroke="#97666A" StrokeThickness="1" Opacity=".55" />
+      <Path Data="M75,24 C48,25 26,47 26,77 C26,107 47,127 73,132 L78,107 66,88 78,68 70,53 Z"
+            Fill="#29252C" Stroke="#C18485" StrokeThickness="1.5" StrokeLineJoin="Round" />
+      <Path Data="M87,24 C116,26 138,49 138,77 C138,107 116,129 88,132 L93,107 81,87 92,68 82,51 Z"
+            Fill="#29252C" Stroke="#C18485" StrokeThickness="1.5" StrokeLineJoin="Round" />
+      <Path Data="M62,100 L52,100 66,69 62,101 Z M82,52 L99,39 98,60 89,74 Z M77,76 L81,85 70,102 61,114 53,110 70,85 Z"
+            Fill="#B98B8B" />
+      <Path Data="M36,115 L47,108 M110,45 L123,32 M108,111 L122,123" Stroke="#76575F" StrokeThickness="2" />
+     </Canvas>
+    </Grid>
+    <TextBlock Text="{Binding ResultTitle}" FontFamily="Georgia" FontSize="64" HorizontalAlignment="Center" Margin="0,10,0,10">
+     <TextBlock.Style><Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+      <Setter Property="Foreground" Value="#F0C4C3" />
+      <Style.Triggers><DataTrigger Binding="{Binding IsVictory}" Value="True"><Setter Property="Foreground" Value="#FFE4AD" /></DataTrigger></Style.Triggers>
+     </Style></TextBlock.Style>
+    </TextBlock>
+    <TextBlock Text="{Binding ResultDescription}" TextWrapping="Wrap" TextAlignment="Center" FontSize="19"
+               Foreground="{StaticResource Muted}" Margin="30,0,30,32" />
+    <Button Content="{Binding ContinueLabel}" Command="{Binding ContinueCommand}" FontSize="18" Margin="0,0,0,10">
+     <Button.Style><Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+      <Setter Property="Background" Value="#51363C" />
+      <Setter Property="BorderBrush" Value="#AD7E80" />
+      <Style.Triggers><DataTrigger Binding="{Binding IsVictory}" Value="True">
+       <Setter Property="Background" Value="#644A2C" />
+       <Setter Property="BorderBrush" Value="#DEB475" />
+      </DataTrigger></Style.Triggers>
+     </Style></Button.Style>
+    </Button>
+    <Button Content="Змінити команду" Command="{Binding ChangeTeamCommand}" Margin="0,0,0,10" />
+    <UniformGrid Columns="2">
+     <Button Content="Повернути раунд" Command="{Binding RestoreCommand}" Margin="0,0,5,0" />
+     <Button Content="До меню" Command="{Binding MenuCommand}" Margin="5,0,0,0" />
+    </UniformGrid>
+   </StackPanel>
+  </Grid>
+ </Border>
+</UserControl>

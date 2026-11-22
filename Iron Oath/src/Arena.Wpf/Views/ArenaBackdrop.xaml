@@ -1,0 +1,82 @@
+<UserControl x:Class="Arena.Wpf.Views.ArenaBackdrop"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" IsHitTestVisible="False" Focusable="False">
+ <Viewbox Stretch="Fill" IsHitTestVisible="False">
+  <Grid Width="1360" Height="900">
+   <Grid.Resources>
+    <DrawingBrush x:Key="Masonry" TileMode="Tile" Viewport="0,0,344,176" ViewportUnits="Absolute" Viewbox="0,0,344,176" ViewboxUnits="Absolute">
+     <DrawingBrush.Drawing>
+      <DrawingGroup>
+       <GeometryDrawing Brush="#162229" Geometry="M0,0 H344 V176 H0 Z" />
+       <GeometryDrawing Brush="#243138" Geometry="M3,4 H162 L167,9 V80 L162,85 H5 L3,80 Z M177,5 H339 L343,10 V82 H175 V10 Z M3,92 H81 L86,98 V170 H3 Z M95,92 H253 L257,99 V172 H94 Z M267,92 H344 V170 H265 Z" />
+       <GeometryDrawing Brush="#2C3A40" Geometry="M3,4 H162 L167,9 H5 V80 H3 Z M177,5 H339 L343,10 H177 V82 H175 V10 Z M3,92 H81 L86,98 H5 V170 H3 Z M95,92 H253 L257,99 H96 V172 H94 Z M267,92 H344 V97 H267 V170 H265 Z" />
+       <GeometryDrawing Brush="#202C33" Geometry="M8,65 L150,71 163,78 V82 H5 Z M176,77 L338,65 V80 H179 Z M101,160 L238,153 253,170 H98 Z" />
+      </DrawingGroup>
+     </DrawingBrush.Drawing>
+    </DrawingBrush>
+    <DrawingBrush x:Key="Chain" TileMode="Tile" Viewport="0,0,22,39" ViewportUnits="Absolute" Viewbox="0,0,22,39" ViewboxUnits="Absolute">
+     <DrawingBrush.Drawing>
+      <DrawingGroup>
+       <GeometryDrawing Brush="Transparent" Geometry="M0,0 H22 V39 H0 Z" />
+       <GeometryDrawing Geometry="M11,1 C3,1 3,14 3,19 C3,25 19,25 19,19 C19,12 19,1 11,1 Z M11,22 V38">
+        <GeometryDrawing.Pen><Pen Brush="#131B20" Thickness="6" StartLineCap="Round" EndLineCap="Round" /></GeometryDrawing.Pen>
+       </GeometryDrawing>
+       <GeometryDrawing Geometry="M11,1 C5,1 5,15 5,18 C5,23 17,23 17,18 C17,14 17,1 11,1 Z M11,22 V38">
+        <GeometryDrawing.Pen><Pen Brush="#657071" Thickness="2" StartLineCap="Round" EndLineCap="Round" /></GeometryDrawing.Pen>
+       </GeometryDrawing>
+      </DrawingGroup>
+     </DrawingBrush.Drawing>
+    </DrawingBrush>
+    <DataTemplate x:Key="HangingChain">
+     <Canvas Width="22" Height="348">
+      <Rectangle Width="22" Height="312" Fill="{Binding}" />
+      <Path Data="M11,308 V319" Stroke="#657071" StrokeThickness="3" />
+      <Path Data="M11,316 L19,322 19,333 11,342 3,333 3,322 Z"
+            Fill="#303B41" Stroke="#657071" StrokeThickness="2" StrokeLineJoin="Round" />
+      <Path Data="M7,324 L11,320 15,324 M11,326 V333" Stroke="#889191" StrokeThickness="1.4" />
+     </Canvas>
+    </DataTemplate>
+   </Grid.Resources>
+   <Canvas>
+    <Rectangle Width="1360" Height="800" Fill="{StaticResource Masonry}" Opacity="0.85" />
+    <Path Data="M214,787 V363 C214,155 412,34 680,34 C948,34 1146,155 1146,363 V787 Z" Fill="#15212A" Stroke="#141B22" StrokeThickness="20" />
+    <Path Data="M214,787 V363 C214,155 412,34 680,34 C948,34 1146,155 1146,363 V787 M230,787 V365 C230,169 420,51 680,51 C940,51 1130,169 1130,365 V787"
+          Stroke="#566062" StrokeThickness="3" Opacity="0.65" />
+    <Path Data="M181,790 V363 C181,138 395,7 680,7 C965,7 1179,138 1179,363 V790" Stroke="#48585D" StrokeThickness="6" Opacity="0.62" />
+    <Path Data="M196,274 L227,288 M243,185 L270,204 M320,111 L341,139 M430,55 L441,86 M553,21 L558,52 M680,8 V41 M807,21 L802,52 M930,55 L919,86 M1040,111 L1019,139 M1117,185 L1090,204 M1164,274 L1133,288"
+          Stroke="#141F24" StrokeThickness="4" />
+    <Ellipse Width="406" Height="406" Canvas.Left="477" Canvas.Top="222" Stroke="#24333B" StrokeThickness="3" Fill="#19262F" />
+    <Ellipse Width="370" Height="370" Canvas.Left="495" Canvas.Top="240" Stroke="#2D3B43" StrokeThickness="1.5" />
+    <Path Data="M680,314 C693,386 749,400 748,464 C745,507 711,537 678,543 C640,539 611,510 612,472 C613,430 642,413 652,384 C663,410 656,434 649,451 C676,437 687,390 680,314 Z
+                M681,464 C690,484 700,498 692,514 C686,525 672,526 664,517 C655,505 674,478 681,464 Z"
+          Fill="#24323A" Stroke="#34424A" StrokeThickness="2" />
+    <Rectangle Width="1360" Height="900">
+     <Rectangle.Fill>
+      <RadialGradientBrush Center=".5,.46" GradientOrigin=".5,.46" RadiusX=".67" RadiusY=".68">
+       <GradientStop Color="#00111821" /><GradientStop Color="#11101821" Offset=".57" /><GradientStop Color="#AA101821" Offset="1" />
+      </RadialGradientBrush>
+     </Rectangle.Fill>
+    </Rectangle>
+   </Canvas>
+<Canvas Width="1360" Height="900" Opacity="0.65">
+    <Path Data="M0,0 L180,0 148,176 86,323 70,900 0,900 Z" Fill="#263038" Stroke="#475058" StrokeThickness="2" />
+    <Path Data="M1360,0 L1180,0 1212,176 1274,323 1290,900 1360,900 Z" Fill="#263038" Stroke="#475058" StrokeThickness="2" />
+    <Path Data="M0,170 L148,176 M0,340 L86,323 M0,515 L79,508 M0,700 L74,695 M1212,176 L1360,170 M1274,323 L1360,340 M1281,508 L1360,515 M1286,695 L1360,700" Stroke="#111A20" StrokeThickness="6" />
+    <Path Data="M125,900 L270,790 1090,790 1235,900 M220,900 L345,790 M450,900 L505,790 M910,900 L855,790 M1140,900 L1015,790" Stroke="#495052" StrokeThickness="1" Opacity="0.5" />
+    <Ellipse Width="310" Height="480" Canvas.Left="-150" Canvas.Top="210"><Ellipse.Fill><RadialGradientBrush><GradientStop Color="#80C78D42" /><GradientStop Color="#00BE7B2B" Offset="1" /></RadialGradientBrush></Ellipse.Fill></Ellipse>
+    <Ellipse Width="310" Height="480" Canvas.Left="1200" Canvas.Top="210"><Ellipse.Fill><RadialGradientBrush><GradientStop Color="#80C78D42" /><GradientStop Color="#00BE7B2B" Offset="1" /></RadialGradientBrush></Ellipse.Fill></Ellipse>
+    <Path Data="M30,470 L39,430 48,470 Z M1312,470 L1321,430 1330,470 Z" Fill="#EEC87D" />
+    <Path Data="M39,430 C17,416 45,406 35,387 C64,415 56,424 39,430 M1321,430 C1299,416 1327,406 1317,387 C1346,415 1338,424 1321,430" Fill="#EEA850" />
+   </Canvas>
+   <Canvas Opacity="0.72">
+    <ContentControl Canvas.Left="111" Canvas.Top="17" Content="{StaticResource Chain}" ContentTemplate="{StaticResource HangingChain}">
+     <ContentControl.RenderTransform><RotateTransform Angle="11" /></ContentControl.RenderTransform>
+    </ContentControl>
+    <ContentControl Canvas.Left="1226" Canvas.Top="21" Content="{StaticResource Chain}" ContentTemplate="{StaticResource HangingChain}">
+     <ContentControl.RenderTransform><RotateTransform Angle="-11" /></ContentControl.RenderTransform>
+    </ContentControl>
+    <Path Data="M110,14 H135 V29 H110 Z M1225,14 H1250 V29 H1225 Z" Fill="#303B41" Stroke="#596264" StrokeThickness="2" />
+   </Canvas>
+  </Grid>
+ </Viewbox>
+</UserControl>
