@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Arena.Tactics</AssemblyName>
+    <RootNamespace>Arena.Wpf</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Arena.Core/Arena.Core.csproj" />
+    <Resource Include="Assets/Portraits.png" />
+  </ItemGroup>
+</Project>

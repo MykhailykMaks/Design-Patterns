@@ -1,0 +1,205 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:Arena.Wpf.Controls">
+ <BooleanToVisibilityConverter x:Key="BoolVisibility" />
+ <SolidColorBrush x:Key="Text" Color="#E9E5DB" />
+ <SolidColorBrush x:Key="Muted" Color="#B0BABD" />
+ <SolidColorBrush x:Key="Accent" Color="#9DD4C6" />
+ <SolidColorBrush x:Key="Gold" Color="#DABC88" />
+ <SolidColorBrush x:Key="Surface" Color="#202B32" />
+ <Style TargetType="TextBlock">
+  <Setter Property="Foreground" Value="{StaticResource Text}" />
+  <Setter Property="FontSize" Value="16" />
+ </Style>
+ <Style x:Key="Caption" TargetType="TextBlock">
+  <Setter Property="Foreground" Value="{StaticResource Muted}" />
+  <Setter Property="FontSize" Value="12" />
+ </Style>
+ <Style x:Key="Heading" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+  <Setter Property="FontSize" Value="32" />
+  <Setter Property="FontWeight" Value="SemiBold" />
+ </Style>
+ <Style TargetType="Button">
+  <Setter Property="Foreground" Value="{StaticResource Text}" />
+  <Setter Property="Background" Value="#293943" />
+  <Setter Property="BorderBrush" Value="#59626A" />
+  <Setter Property="BorderThickness" Value="1" />
+  <Setter Property="Padding" Value="22,13" />
+  <Setter Property="FontSize" Value="16" />
+  <Setter Property="Cursor" Value="Hand" />
+  <Setter Property="HorizontalContentAlignment" Value="Center" />
+  <Setter Property="VerticalContentAlignment" Value="Center" />
+  <Setter Property="Template">
+   <Setter.Value>
+    <ControlTemplate TargetType="Button">
+     <Border x:Name="Face" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2,10,2,10" Padding="{TemplateBinding Padding}" RenderTransformOrigin="0.5,0.5">
+      <Border.RenderTransform><ScaleTransform x:Name="Scale" /></Border.RenderTransform>
+      <VisualStateManager.VisualStateGroups>
+       <VisualStateGroup x:Name="CommonStates">
+        <VisualStateGroup.Transitions>
+         <VisualTransition To="Pressed" GeneratedDuration="0:0:0.05" />
+         <VisualTransition GeneratedDuration="0:0:0.12" />
+        </VisualStateGroup.Transitions>
+        <VisualState x:Name="Normal" />
+        <VisualState x:Name="MouseOver"><Storyboard>
+         <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" To="1.012" Duration="0" />
+         <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" To="1.012" Duration="0" />
+        </Storyboard></VisualState>
+        <VisualState x:Name="Pressed"><Storyboard>
+         <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" To="0.979" Duration="0" />
+         <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" To="0.979" Duration="0" />
+        </Storyboard></VisualState>
+        <VisualState x:Name="Disabled" />
+       </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Grid>
+       <Border BorderBrush="#30FFFFFF" BorderThickness="0,1,0,0" VerticalAlignment="Top" Margin="-12,-7,-12,0" />
+       <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" />
+      </Grid>
+     </Border>
+     <ControlTemplate.Triggers>
+      <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Face" Property="BorderBrush" Value="{StaticResource Accent}" /><Setter TargetName="Face" Property="Background" Value="#354B52" /></Trigger>
+      <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Face" Property="BorderBrush" Value="{StaticResource Gold}" /></Trigger>
+      <Trigger Property="IsPressed" Value="True"><Setter TargetName="Face" Property="Opacity" Value="0.75" /></Trigger>
+      <MultiTrigger><MultiTrigger.Conditions><Condition Property="IsEnabled" Value="False" /><Condition Property="Tag" Value="{x:Null}" /></MultiTrigger.Conditions><Setter TargetName="Face" Property="Opacity" Value="0.5" /></MultiTrigger>
+     </ControlTemplate.Triggers>
+    </ControlTemplate>
+   </Setter.Value>
+  </Setter>
+ </Style>
+ <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+  <Setter Property="Background" Value="#365B55" /><Setter Property="BorderBrush" Value="{StaticResource Accent}" />
+ </Style>
+ <Style x:Key="CardButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+  <Setter Property="Tag" Value="CombatCard" />
+  <Setter Property="Padding" Value="14,10" /><Setter Property="Background" Value="#1D2930" />
+  <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+  <Setter Property="VerticalContentAlignment" Value="Stretch" />
+  <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+  <Style.Triggers>
+   <DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="BorderBrush" Value="{StaticResource Gold}" /><Setter Property="Background" Value="#36433F" /><Setter Property="BorderThickness" Value="2" /></DataTrigger>
+   <DataTrigger Binding="{Binding IsTarget}" Value="True"><Setter Property="BorderBrush" Value="{StaticResource Accent}" /><Setter Property="Background" Value="#294B49" /><Setter Property="BorderThickness" Value="2" /></DataTrigger>
+   <DataTrigger Binding="{Binding IsPerformer}" Value="True"><Setter Property="BorderBrush" Value="#FFCF7D" /><Setter Property="Background" Value="#4D4538" /><Setter Property="BorderThickness" Value="2" /></DataTrigger>
+   <DataTrigger Binding="{Binding IsReceiving}" Value="True"><Setter Property="BorderBrush" Value="#F4BB9B" /><Setter Property="Background" Value="#634739" /><Setter Property="BorderThickness" Value="2" /></DataTrigger>
+   <DataTrigger Binding="{Binding IsCritical}" Value="True"><Setter Property="BorderBrush" Value="#FFDC7A" /><Setter Property="Background" Value="#80543D" /></DataTrigger>
+   <DataTrigger Binding="{Binding IsAlive}" Value="False"><Setter Property="Opacity" Value="0.4" /></DataTrigger>
+  </Style.Triggers>
+ </Style>
+ <Style TargetType="ProgressBar">
+  <Setter Property="Height" Value="7" /><Setter Property="Foreground" Value="{StaticResource Accent}" /><Setter Property="Background" Value="#49545B" />
+  <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ProgressBar">
+   <Grid x:Name="PART_Track" Background="{TemplateBinding Background}" ClipToBounds="True"><Border x:Name="PART_Indicator" HorizontalAlignment="Left" Background="{TemplateBinding Foreground}" /></Grid>
+  </ControlTemplate></Setter.Value></Setter>
+ </Style>
+ <Style TargetType="ToolTip"><Setter Property="MaxWidth" Value="400" /><Setter Property="Background" Value="#26343D" /><Setter Property="Foreground" Value="{StaticResource Text}" /><Setter Property="Padding" Value="12" />
+  <Setter Property="ContentTemplate"><Setter.Value><DataTemplate><TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="14" /></DataTemplate></Setter.Value></Setter>
+ </Style>
+ <ItemsPanelTemplate x:Key="HorizontalTeam"><UniformGrid Rows="1" /></ItemsPanelTemplate>
+ <Style x:Key="ScreenEntrance" TargetType="FrameworkElement">
+  <Style.Triggers><Trigger Property="IsVisible" Value="True"><Trigger.EnterActions><BeginStoryboard><Storyboard>
+   <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="1" Duration="0:0:0.2" FillBehavior="Stop" />
+  </Storyboard></BeginStoryboard></Trigger.EnterActions></Trigger></Style.Triggers>
+ </Style>
+ <DataTemplate x:Key="EnemyIntent">
+  <Border Background="#131F26" BorderBrush="#43535A" BorderThickness="1" CornerRadius="4" Padding="7,2"
+          ToolTip="{Binding Detail}" ToolTipService.ShowOnDisabled="True" AutomationProperties.Name="{Binding Detail}">
+   <Grid>
+    <Grid.ColumnDefinitions>
+     <ColumnDefinition Width="Auto" />
+     <ColumnDefinition Width="*" />
+     <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,9,0">
+     <TextBlock Text="{Binding Icon}" Foreground="{Binding Color}" FontFamily="Segoe UI Symbol" FontSize="16" VerticalAlignment="Center" />
+     <TextBlock Text="{Binding Category}" Foreground="{Binding Color}" FontSize="13" FontWeight="SemiBold" Margin="5,0,0,0" VerticalAlignment="Center" />
+    </StackPanel>
+    <TextBlock Grid.Column="1" Text="{Binding SkillName}" Foreground="{StaticResource Muted}" FontSize="13"
+               TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+    <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="8,0,0,0" VerticalAlignment="Center"
+                Visibility="{Binding HasTarget, Converter={StaticResource BoolVisibility}}">
+     <TextBlock Text="→" Foreground="{StaticResource Muted}" FontSize="15" Margin="0,0,5,0" VerticalAlignment="Center" />
+     <Border Width="26" Height="26" CornerRadius="3" Background="{Binding TargetPortrait}" Margin="0,0,5,0"
+             Visibility="{Binding HasPortrait, Converter={StaticResource BoolVisibility}}" />
+     <TextBlock Text="{Binding TargetName}" MaxWidth="155" TextTrimming="CharacterEllipsis" FontSize="13" VerticalAlignment="Center" />
+    </StackPanel>
+   </Grid>
+  </Border>
+ </DataTemplate>
+ <DataTemplate x:Key="CombatCard">
+  <Grid Margin="6,0">
+   <Button Style="{StaticResource CardButton}" Command="{Binding DataContext.CardCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" ToolTip="{Binding CombatTooltip}" AutomationProperties.Name="{Binding Name}">
+    <Grid>
+     <Grid.RowDefinitions><RowDefinition Height="*" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+     <Grid>
+      <Grid.ColumnDefinitions><ColumnDefinition Width="102" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+      <Border Width="90" Height="90" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{Binding Portrait}" CornerRadius="2,7,2,7">
+       <Border.RenderTransform><TranslateTransform x:Name="Advance" /></Border.RenderTransform>
+      </Border>
+      <StackPanel Grid.Column="1" VerticalAlignment="Center">
+       <TextBlock Text="{Binding Name}" FontSize="20" FontWeight="SemiBold" />
+       <StackPanel Orientation="Horizontal" Margin="0,2">
+        <TextBlock Text="{Binding Role}" FontSize="13" Foreground="{StaticResource Muted}" />
+        <TextBlock Text="◆ Лідер" Margin="12,0,0,0" Foreground="{StaticResource Gold}" FontSize="13" Visibility="{Binding IsLeader, Converter={StaticResource BoolVisibility}}" ToolTip="{Binding Aura}" />
+       </StackPanel>
+       <TextBlock Text="{Binding AttackText}" FontSize="13" Foreground="#C5D1D1" Margin="0,4,0,0" />
+      </StackPanel>
+     </Grid>
+     <DockPanel Grid.Row="1" Margin="0,7,0,3">
+      <TextBlock Text="{Binding HealthText}" HorizontalAlignment="Right" DockPanel.Dock="Right" FontSize="13" FontWeight="SemiBold" />
+      <TextBlock Text="Здоров’я" Style="{StaticResource Caption}" />
+     </DockPanel>
+     <controls:AnimatedHealthBar Grid.Row="2" Animate="{Binding AnimateHealth}" Maximum="{Binding MaxHealth}" Health="{Binding Health}" Style="{StaticResource {x:Type ProgressBar}}" />
+     <DockPanel Grid.Row="3" Margin="0,5,0,0" Height="24">
+      <ItemsControl ItemsSource="{Binding Effects}" DockPanel.Dock="Right">
+       <ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal" /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+       <ItemsControl.ItemTemplate><DataTemplate>
+        <Border Background="#16232B" BorderThickness="1" BorderBrush="{Binding Color}" CornerRadius="4" Padding="5,0" Margin="4,0,0,0" ToolTip="{Binding Description}" ToolTipService.ShowOnDisabled="True">
+         <TextBlock Text="{Binding Label}" Foreground="{Binding Color}" FontWeight="SemiBold" FontSize="14" VerticalAlignment="Center" />
+        </Border>
+       </DataTemplate></ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <TextBlock VerticalAlignment="Center"><TextBlock.Style><Style TargetType="TextBlock" BasedOn="{StaticResource Caption}">
+       <Setter Property="Text" Value="{Binding Status}" />
+       <Style.Triggers>
+        <DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="Text" Value="◆ Обрано" /><Setter Property="Foreground" Value="{StaticResource Gold}" /></DataTrigger>
+        <DataTrigger Binding="{Binding IsTarget}" Value="True"><Setter Property="Text" Value="◎ Доступна ціль" /><Setter Property="Foreground" Value="{StaticResource Accent}" /></DataTrigger>
+        <DataTrigger Binding="{Binding IsPerformer}" Value="True"><Setter Property="Text" Value="▶ Виконує дію" /><Setter Property="Foreground" Value="{StaticResource Gold}" /></DataTrigger>
+       </Style.Triggers>
+      </Style></TextBlock.Style></TextBlock>
+     </DockPanel>
+     <TextBlock Grid.Row="4" Text="{Binding Footer}" Foreground="{StaticResource Gold}" FontSize="13" TextTrimming="CharacterEllipsis" Margin="0,3,0,0">
+      <TextBlock.Style><Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+       <Style.Triggers><DataTrigger Binding="{Binding IsEnemy}" Value="True"><Setter Property="Visibility" Value="Collapsed" /></DataTrigger></Style.Triggers>
+      </Style></TextBlock.Style>
+     </TextBlock>
+     <ContentControl Grid.Row="4" Margin="0,3,0,0" Focusable="False" Content="{Binding Intent}" ContentTemplate="{StaticResource EnemyIntent}">
+      <ContentControl.Style><Style TargetType="ContentControl">
+       <Style.Triggers><DataTrigger Binding="{Binding Intent}" Value="{x:Null}"><Setter Property="Visibility" Value="Collapsed" /></DataTrigger></Style.Triggers>
+      </Style></ContentControl.Style>
+     </ContentControl>
+    </Grid>
+   </Button>
+   <Border x:Name="Hit" IsHitTestVisible="False" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,12,0" Padding="10,3" CornerRadius="3" Background="#F019222B" BorderBrush="{Binding ImpactColor}" BorderThickness="1" RenderTransformOrigin="0.5,0.5">
+    <Border.RenderTransform><TransformGroup><ScaleTransform x:Name="ImpactScale" /><TranslateTransform x:Name="Rise" /></TransformGroup></Border.RenderTransform>
+    <TextBlock x:Name="Number" Text="{Binding Impact}" Foreground="{Binding ImpactColor}" FontSize="26" FontWeight="Bold" />
+   </Border>
+  </Grid>
+  <DataTemplate.Triggers>
+   <DataTrigger Binding="{Binding IsPerformer}" Value="True">
+    <DataTrigger.EnterActions><BeginStoryboard Name="AttackMotion"><Storyboard>
+     <DoubleAnimation Storyboard.TargetName="Advance" Storyboard.TargetProperty="X" From="0" To="6" AutoReverse="True" Duration="0:0:0.13" FillBehavior="Stop" />
+    </Storyboard></BeginStoryboard></DataTrigger.EnterActions>
+    <DataTrigger.ExitActions><RemoveStoryboard BeginStoryboardName="AttackMotion" /></DataTrigger.ExitActions>
+   </DataTrigger>
+   <DataTrigger Binding="{Binding HasImpact}" Value="True">
+    <Setter TargetName="Hit" Property="Visibility" Value="Visible" />
+    <DataTrigger.EnterActions><BeginStoryboard Name="ImpactMotion"><Storyboard>
+     <DoubleAnimation Storyboard.TargetName="Rise" Storyboard.TargetProperty="Y" From="12" To="0" Duration="0:0:0.28" />
+     <DoubleAnimation Storyboard.TargetName="Hit" Storyboard.TargetProperty="Opacity" From="0.4" To="1" Duration="0:0:0.1" />
+     <DoubleAnimation Storyboard.TargetName="ImpactScale" Storyboard.TargetProperty="ScaleX" From="1.17" To="1" Duration="0:0:0.2" />
+     <DoubleAnimation Storyboard.TargetName="ImpactScale" Storyboard.TargetProperty="ScaleY" From="1.17" To="1" Duration="0:0:0.2" />
+    </Storyboard></BeginStoryboard></DataTrigger.EnterActions>
+    <DataTrigger.ExitActions><RemoveStoryboard BeginStoryboardName="ImpactMotion" /></DataTrigger.ExitActions>
+   </DataTrigger>
+   <DataTrigger Binding="{Binding IsCritical}" Value="True"><Setter TargetName="Number" Property="FontSize" Value="32" /><Setter TargetName="Hit" Property="BorderThickness" Value="2" /></DataTrigger>
+  </DataTemplate.Triggers>
+ </DataTemplate>
+</ResourceDictionary>
